@@ -62,10 +62,12 @@ public class CISQueue<T> {
 
     // reshuffle. Moves each element down one index. Called whenever we dequeue.
     private void reshuffle(){
-        //e.g. {1,2,3,4,5} will become {2,3,4,5,5}, and the last element will be ignored
+        //e.g. {1,2,3,4,5} will become {2,3,4,5,5}, and the last element will become null
+        //so will become {2,3,4,5,null}, leaving room for more enqueues
         for (int i = 0; i < size - 1; i++){
             queue[i] = queue[i+1];
         }
+        queue[pointer] = null;
     }
 
     // toString. Returns a description of the queue in, for example, the following format:
